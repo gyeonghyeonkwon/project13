@@ -125,8 +125,8 @@
 Github Repository URL: 
 
 - 필수) 팀원들과 함께 찍은 인증샷(온라인 만남시 스크린 캡쳐)도 함께 업로드 해주세요 🙂
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/c69962b0-3951-485b-b10a-5bb29576bba8/e13d467c-e41b-4ef2-80be-096949788b59/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/c69962b0-3951-485b-b10a-5bb29576bba8/6efcac41-8601-48f6-81f9-5343b560a980/Untitled.png)
+![image](https://github.com/Project-13-end/Project-13-end/assets/148305917/e3e6fc21-b519-4583-8acc-808a37be6c11)
+![image](https://github.com/Project-13-end/Project-13-end/assets/148305917/06c0213c-05a3-49d7-be60-3137fe149732)
 ![image](https://github.com/Project-13-end/Project-13-end/assets/148305917/1b025c7b-faff-473b-b653-d41ce6d8c682)
 
 

@@ -3,6 +3,7 @@ package com.ll.project_13_backend.global.initData;
 import com.ll.project_13_backend.cart.service.CartService;
 import com.ll.project_13_backend.member.entity.Member;
 import com.ll.project_13_backend.member.service.MemberService;
+import com.ll.project_13_backend.payment.entity.CashLog;
 import com.ll.project_13_backend.post.entity.Category;
 import com.ll.project_13_backend.post.entity.Post;
 import com.ll.project_13_backend.post.service.PostService;
@@ -59,7 +60,7 @@ public class NotProd {
         cartService.addItem(user1 , product1);
         cartService.addItem(user1 , product2);
 
-        memberService.addCash(user1 , 50_000 , member1 , CashLog.EventType.충전__무통장입금);
+        memberService.addCash(user1 , new BigDecimal("10000") , CashLog.EvenType.충전__무통장입금 , user1);
     }
 
 }

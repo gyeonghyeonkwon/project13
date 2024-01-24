@@ -21,7 +21,12 @@ public class OrdersItem extends BaseEntity {
     @ManyToOne
     private Product product; //상품 (post 의 내용들)
 
-    //
+    //주문
     @ManyToOne
-    private Orders orders; //주문
+    private Orders orders;
+
+    //상품 가격
+    public long getPayPrice() {
+        return product.getPrice();
+    }
 }

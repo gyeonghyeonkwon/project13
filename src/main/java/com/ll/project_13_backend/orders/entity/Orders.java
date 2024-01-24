@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class Orders extends BaseEntity {
     private boolean isCanceled ; // 취소 여부
     private boolean isRefund ; // 환불 여부
 
+    private LocalDateTime payDate ; //결제일
+    private LocalDateTime cancelDate ; // 취소일
+    private LocalDateTime refundDate ; // 환불일
+
     @Builder.Default
     @OneToMany(mappedBy = "orders", cascade = ALL, orphanRemoval = true)
 
@@ -47,4 +52,15 @@ public class Orders extends BaseEntity {
         ordersItems.add(ordersItem);
     }
 
+    //여러개 의 주문 이 존재 할 시 주문 상품의 가격을 전부 합산 한다
+    public long calcPayPrice() {
+
+        return ordersItems.stream()
+                .mapToLong(OrdersItem::getPayPrice)
+                .sum();
+    }
+    //결제 일자
+    public void setPaymentDone() {
+        payDate = LocalDateTime.now();
+    }
 }

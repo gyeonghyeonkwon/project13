@@ -3,6 +3,7 @@ package com.ll.project_13_backend.global.initData;
 import com.ll.project_13_backend.cart.service.CartService;
 import com.ll.project_13_backend.member.entity.Member;
 import com.ll.project_13_backend.member.service.MemberService;
+import com.ll.project_13_backend.orders.entity.Orders;
 import com.ll.project_13_backend.orders.service.OrdersService;
 import com.ll.project_13_backend.payment.entity.CashLog;
 import com.ll.project_13_backend.post.entity.Category;
@@ -60,10 +61,14 @@ public class NotProd {
         cartService.addItem(user1 , product1);
         cartService.addItem(user1 , product2);
 
-        memberService.addCash(user1 ,10000 , CashLog.EvenType.충전__무통장입금 , user1);
+        memberService.addCash(user1 ,50000 , CashLog.EvenType.충전__무통장입금 , user1);
         memberService.addCash(user1, -2000, CashLog.EvenType.출금__통장입금, user1);
 
-        ordersService.createFromCart(user1);
+        Orders order1 = ordersService.createFromCart(user1); //주문
+
+        long orderPayPrice = order1.calcPayPrice();
+
+        ordersService.payByCashOnly(order1);
 
     }
 

@@ -18,5 +18,5 @@ public class Member extends BaseEntity {
     private String username;
     private String password;
 
-    private long restCash; //남은 금액
+    private long restCash; //회원이 가지고 있는 캐쉬
 }

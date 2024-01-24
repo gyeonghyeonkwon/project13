@@ -33,8 +33,11 @@ public class Orders extends BaseEntity {
 
     @Builder.Default
     @OneToMany(mappedBy = "orders", cascade = ALL, orphanRemoval = true)
+
     private List<OrdersItem> ordersItems = new ArrayList<>();
 
+
+    // 상품을 주문 할때 장바구니에 저장된 여러 상품을 불러온다.
     public void addItem(Cart cart) {
         OrdersItem ordersItem = OrdersItem.builder()
                 .orders(this)

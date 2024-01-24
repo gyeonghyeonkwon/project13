@@ -19,8 +19,9 @@ import static lombok.AccessLevel.PROTECTED;
 public class OrdersItem extends BaseEntity {
 
     @ManyToOne
-    private Product product;
+    private Product product; //상품 (post 의 내용들)
 
+    //
     @ManyToOne
-    private Orders orders;
+    private Orders orders; //주문
 }

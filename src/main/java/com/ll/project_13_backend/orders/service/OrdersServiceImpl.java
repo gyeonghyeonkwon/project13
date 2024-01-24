@@ -18,11 +18,11 @@ public class OrdersServiceImpl implements OrdersService {
         private final CartService cartService;
         private final OrdersRepository ordersRepository;
 
-        //주문생성
+        //장바구니에 저장되어있는 상품을 주문 에 가지고온다 (주문생성)
    public  Orders createFromCart(Member buyer){
 
        List<Cart> cartItem = cartService.findItemsByBuyer(buyer); //구매자 가 장바구니 의 상품을 가지고 온다.
-
+       
        Orders orders = Orders.builder()
                .buyer(buyer)
                .build();
@@ -30,10 +30,10 @@ public class OrdersServiceImpl implements OrdersService {
        cartItem
                .stream()
                .forEach(orders::addItem);
-       ordersRepository.save(orders);
+       ordersRepository.save(orders);  //주문 생성
 
        cartItem.stream()
-               .forEach(cartService::delete);
+               .forEach(cartService::delete); //주문이 완료 되면 장바구니에 저장되어있는 상품을 삭제한다.
 
        return orders;
    }

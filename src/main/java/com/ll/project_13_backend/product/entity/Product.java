@@ -26,7 +26,7 @@ public class Product extends BaseEntity {
 
     private String relTypeCode;  //Post
 
-    private long relId;
+    private long relId; // 엔티티 id
 
 
 

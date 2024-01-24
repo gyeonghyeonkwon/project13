@@ -34,7 +34,7 @@ public class Post extends BaseEntity {
     private long price; //가격
 
     @OneToOne
-    private Product product;
+    private Product product; //상품
 
 
 }

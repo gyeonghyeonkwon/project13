@@ -20,7 +20,7 @@ public class ProductService {
         Product product = Product.builder()
                 .teacher(post.getMember())
                 .relId(post.getId())
-                .relTypeCode("post")
+                .relTypeCode(post.getModelName()) //이름
                 .name(post.getTitle())
                 .price(post.getPrice())
                 .build();

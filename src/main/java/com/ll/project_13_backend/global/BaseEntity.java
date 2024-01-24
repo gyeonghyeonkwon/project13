@@ -29,4 +29,8 @@ public class BaseEntity {
     private LocalDateTime createDate;
     @LastModifiedDate
     private LocalDateTime modifyDate;
+
+    public String getModelName() {
+        return Ut.str.lcfirst(this.getClass().getSimpleName());
+    }
 }

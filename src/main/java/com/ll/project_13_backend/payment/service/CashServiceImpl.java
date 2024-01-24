@@ -22,7 +22,7 @@ public class CashServiceImpl implements CashService{
         CashLog cashLog = CashLog.builder()
                 .member(member)
                 .price(price)
-                .relTypeCode("Post")
+                .relTypeCode(relEntity.getModelName())
                 .relId(relEntity.getId())
                 .eventType(eventType)
                 .build();

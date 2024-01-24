@@ -1,6 +1,7 @@
 package com.ll.project_13_backend.payment.entity;
 
 
+import com.ll.project_13_backend.global.BaseEntity;
 import com.ll.project_13_backend.member.entity.Member;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -19,7 +20,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class CashLog {
+public class CashLog extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private EvenType eventType;

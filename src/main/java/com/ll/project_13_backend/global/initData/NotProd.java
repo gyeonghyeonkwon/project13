@@ -60,15 +60,22 @@ public class NotProd {
         //장바 구니
         cartService.addItem(user1 , product1);
         cartService.addItem(user1 , product2);
+        cartService.addItem(user2 , product1);
+        cartService.addItem(user2 , product2);
 
         memberService.addCash(user1 ,60000 , CashLog.EvenType.충전__무통장입금 , user1);
         memberService.addCash(user1, -2000, CashLog.EvenType.출금__통장입금, user1);
 
-        Orders order1 = ordersService.createFromCart(user1); //주문
+        Orders order1 = ordersService.createFromCart(user1); //주문 생성
 
         long orderPayPrice = order1.calcPayPrice();
 
         ordersService.payByCashOnly(order1);
+
+        memberService.addCash(user2 , 100000 , CashLog.EvenType.충전__무통장입금 , user2);
+        Orders order2 = ordersService.createFromCart(user2); //주문 생성
+        ordersService.payByCashOnly(order2);
+
 
         ordersService.refund(order1); //환불
 

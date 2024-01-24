@@ -61,15 +61,24 @@ public class Orders extends BaseEntity {
     public void setPaymentDone() {
         payDate = LocalDateTime.now();
         isPaid = true;
+
+        ordersItems.stream()
+                .forEach(OrdersItem::setPaymentDone);
     }
     //결제 취소 일자
     public void setCancelDone() {
         cancelDate = LocalDateTime.now();
         isCanceled = true;
+
+        ordersItems.stream()
+                .forEach(OrdersItem::setCancelDone);
     }
     //환불 일자
     public void setRefundDone() {
         refundDate = LocalDateTime.now();
         isRefund = true ;
+
+        ordersItems.stream()
+                .forEach(OrdersItem::setRefundDone);
     }
 }

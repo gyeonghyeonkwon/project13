@@ -29,4 +29,19 @@ public class OrdersItem extends BaseEntity {
     public long getPayPrice() {
         return product.getPrice();
     }
+    public void setPaymentDone() {
+      switch (product.getRelTypeCode()){
+          case "post" -> orders.getBuyer().addMyPost(product.getPost());
+      }
+    }
+
+    public void setCancelDone() {
+    }
+
+    //환불 시 나의 수업에 저장 되어 있는 수업 제거
+    public void setRefundDone() {
+        switch (product.getRelTypeCode()){
+            case "post" -> orders.getBuyer().removeMyPost(product.getPost());
+        }
+    }
 }

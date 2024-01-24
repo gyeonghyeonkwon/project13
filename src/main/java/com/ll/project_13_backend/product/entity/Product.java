@@ -1,7 +1,9 @@
 package com.ll.project_13_backend.product.entity;
 
 import com.ll.project_13_backend.global.BaseEntity;
+import com.ll.project_13_backend.global.config.AppConfig;
 import com.ll.project_13_backend.member.entity.Member;
+import com.ll.project_13_backend.post.entity.Post;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
@@ -28,7 +30,8 @@ public class Product extends BaseEntity {
 
     private long relId; // 엔티티 id
 
-
-
-
+    //relId 엔티티 이름을 얻을 수 있다.
+    public Post getPost() {
+       return AppConfig.getEntityManager().getReference(Post.class , relId);
+    }
 }

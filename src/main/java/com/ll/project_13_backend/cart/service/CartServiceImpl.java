@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * 장바구니 구현
  */
@@ -17,14 +19,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class CartServiceImpl implements CartService{
     private final CartRepository cartRepository;
     @Transactional
-    public Cart addItem(Member member , Product product) {
+    public Cart addItem(Member buyer , Product product) {
 
         Cart cart = Cart.builder()
-                .member(member)
+                .buyer(buyer)
                 .product(product)
                 .build();
         cartRepository.save(cart);
 
         return cart;
+    }
+    // 구매자를 찾는다
+    public List<Cart> findItemsByBuyer(Member buyer) {
+        return cartRepository.findByBuyer(buyer);
+    }
+
+    public void delete(Cart cart) {
+        cartRepository.delete(cart);
     }
 }

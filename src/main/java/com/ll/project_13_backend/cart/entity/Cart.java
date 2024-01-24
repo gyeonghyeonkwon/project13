@@ -20,7 +20,7 @@ import static lombok.AccessLevel.PROTECTED;
 public class Cart extends BaseEntity {
 
     @ManyToOne
-    private Member member;
+    private Member buyer;
 
     @OneToOne
     private Product product;

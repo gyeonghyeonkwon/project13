@@ -17,6 +17,8 @@ public class ProductService {
     @Transactional
     public Product createProduct(Post post) {
 
+        if(post.getProduct() !=null) return  post.getProduct();
+
         Product product = Product.builder()
                 .teacher(post.getMember())
                 .relId(post.getId())

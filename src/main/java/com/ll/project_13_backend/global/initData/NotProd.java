@@ -45,8 +45,8 @@ public class NotProd {
     public void work1() {
         if (memberService.findByUsername("admin").isPresent()) return;
 
-        Member user1 =  memberService.join("member2", "111").getData();
-        Member user2 =  memberService.join("member3", "111").getData();
+        Member user1 =  memberService.join("member1", "111").getData();
+        Member user2 =  memberService.join("member2", "111").getData();
 
 
 
@@ -61,7 +61,7 @@ public class NotProd {
         cartService.addItem(user1 , product1);
         cartService.addItem(user1 , product2);
 
-        memberService.addCash(user1 ,50000 , CashLog.EvenType.충전__무통장입금 , user1);
+        memberService.addCash(user1 ,60000 , CashLog.EvenType.충전__무통장입금 , user1);
         memberService.addCash(user1, -2000, CashLog.EvenType.출금__통장입금, user1);
 
         Orders order1 = ordersService.createFromCart(user1); //주문
@@ -69,6 +69,8 @@ public class NotProd {
         long orderPayPrice = order1.calcPayPrice();
 
         ordersService.payByCashOnly(order1);
+
+        ordersService.refund(order1); //환불
 
     }
 

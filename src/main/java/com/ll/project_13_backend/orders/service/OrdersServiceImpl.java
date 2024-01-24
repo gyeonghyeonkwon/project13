@@ -22,6 +22,7 @@ public class OrdersServiceImpl implements OrdersService {
         private final MemberService memberService;
 
         //장바구니에 저장되어있는 상품을 주문 에 가지고온다 (주문생성)
+  @Transactional
    public  Orders createFromCart(Member buyer){
 
        List<Cart> cartItem = cartService.findItemsByBuyer(buyer); //구매자 가 장바구니 의 상품을 가지고 온다.
@@ -33,14 +34,15 @@ public class OrdersServiceImpl implements OrdersService {
        cartItem
                .stream()
                .forEach(orders::addItem);
-       ordersRepository.save(orders);  //주문 생성
+
+       ordersRepository.save(orders);  //주문 저장
 
        cartItem.stream()
                .forEach(cartService::delete); //주문이 완료 되면 장바구니에 저장되어있는 상품을 삭제한다.
 
        return orders;
    }
-
+    @Transactional
     public void payByCashOnly(Orders orders) {
 
         Member buyer = orders.getBuyer(); // 구매자
@@ -50,13 +52,25 @@ public class OrdersServiceImpl implements OrdersService {
         if (payPrice > restCash) { //  구매자 가지고있는 캐쉬 가 주문할 금액 이 적을 경 우
             throw new RuntimeException("잔액이 부족합니다");
         }
-
+        // 사용 캐시 차감
         memberService.addCash(buyer , payPrice  * -1 , CashLog.EvenType.사용__예치금_주문결제 , orders);
 
-        payDone(orders);
+        payDone(orders); //주문 완료
    }
     //결제일
     private void payDone(Orders orders) {
     orders.setPaymentDone();
    }
+
+   //환불 , 결제 취소
+   //상품을 구매한 구매자를 찾아 결제 취소가 이루어진다.
+    public void refund(Orders orders) {
+
+      long payPrice = orders.calcPayPrice();
+
+      memberService.addCash(orders.getBuyer() , payPrice , CashLog.EvenType.환불__예치금_주문결제 , orders);
+
+      orders.setCancelDone(); //결제취소일
+      orders.setRefundDone(); // 환불 일
+    }
 }

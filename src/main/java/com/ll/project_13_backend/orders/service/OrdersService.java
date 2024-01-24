@@ -7,4 +7,6 @@ public interface OrdersService {
     Orders createFromCart(Member buyer);
 
     void payByCashOnly(Orders orders);
+
+    void refund(Orders orders);
 }

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.ALL;
-import static jakarta.persistence.FetchType.LAZY;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -25,7 +24,7 @@ import static lombok.AccessLevel.PROTECTED;
 @ToString(callSuper = true)
 public class Orders extends BaseEntity {
 
-    @ManyToOne(fetch = LAZY) //지연 로딩
+    @ManyToOne
     private Member buyer; //구매자 (학생)
 
     private boolean isPaid ; //구매 여부
@@ -38,7 +37,6 @@ public class Orders extends BaseEntity {
 
     @Builder.Default
     @OneToMany(mappedBy = "orders", cascade = ALL, orphanRemoval = true)
-
     private List<OrdersItem> ordersItems = new ArrayList<>();
 
 
@@ -62,5 +60,16 @@ public class Orders extends BaseEntity {
     //결제 일자
     public void setPaymentDone() {
         payDate = LocalDateTime.now();
+        isPaid = true;
+    }
+    //결제 취소 일자
+    public void setCancelDone() {
+        cancelDate = LocalDateTime.now();
+        isCanceled = true;
+    }
+    //환불 일자
+    public void setRefundDone() {
+        refundDate = LocalDateTime.now();
+        isRefund = true ;
     }
 }

@@ -4,14 +4,12 @@ import com.ll.project_13_backend.global.BaseEntity;
 import com.ll.project_13_backend.member.entity.Member;
 import com.ll.project_13_backend.product.entity.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post extends BaseEntity {

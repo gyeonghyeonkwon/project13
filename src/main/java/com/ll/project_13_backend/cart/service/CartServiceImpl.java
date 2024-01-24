@@ -20,7 +20,7 @@ public class CartServiceImpl implements CartService{
     private final CartRepository cartRepository;
     @Transactional
     public Cart addItem(Member buyer , Product product) {
-        //상품을  cart 에 저장한다 .
+        //상품을  장바구니 에 저장한다 .
         Cart cart = Cart.builder()
                 .buyer(buyer)
                 .product(product)

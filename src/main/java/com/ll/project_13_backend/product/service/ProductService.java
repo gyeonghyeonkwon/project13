@@ -28,6 +28,8 @@ public class ProductService {
                 .build();
         productRepository.save(product);
 
+        post.setProduct(product);
+
         return product;
     }
 }

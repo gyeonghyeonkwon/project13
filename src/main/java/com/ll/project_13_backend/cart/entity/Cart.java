@@ -5,7 +5,6 @@ import com.ll.project_13_backend.member.entity.Member;
 import com.ll.project_13_backend.product.entity.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.*;
 
 import static lombok.AccessLevel.PROTECTED;
@@ -22,7 +21,7 @@ public class Cart extends BaseEntity {
     @ManyToOne
     private Member buyer;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
     private Long quantity;

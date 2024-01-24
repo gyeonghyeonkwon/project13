@@ -1,28 +1,29 @@
 package com.ll.project_13_backend.cart.entity;
 
-import com.ll.project_13_backend.post.entity.Post;
-import jakarta.persistence.Column;
+import com.ll.project_13_backend.global.BaseEntity;
+import com.ll.project_13_backend.member.entity.Member;
+import com.ll.project_13_backend.product.entity.Product;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import lombok.*;
+
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
-public class Cart {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_id")
-    private Long id;
+@Builder
+@AllArgsConstructor(access = PROTECTED)
+@NoArgsConstructor(access = PROTECTED)
+@Setter
+@Getter
+@ToString(callSuper = true)
+public class Cart extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
+    private Member member;
 
-    private Long price;
+    @OneToOne
+    private Product product;
 
     private Long quantity;
 

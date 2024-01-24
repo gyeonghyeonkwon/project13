@@ -2,21 +2,18 @@ package com.ll.project_13_backend.post.entity;
 
 import com.ll.project_13_backend.global.BaseEntity;
 import com.ll.project_13_backend.member.entity.Member;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.ll.project_13_backend.product.entity.Product;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.math.BigDecimal;
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post extends BaseEntity {
@@ -29,15 +26,17 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    private String title;
+    private String title; //제목
 
-    private String content;
+    private String content; //내용
 
     @Enumerated(EnumType.STRING)
-    private Category category;
+    private Category category; //카테고리
 
-    private Long price;
+    private BigDecimal price; //가격
 
+    @OneToOne
+    private Product product;
 
 
 }

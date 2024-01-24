@@ -1,24 +1,20 @@
 package com.ll.project_13_backend.member.entity;
 
-import jakarta.persistence.Column;
+import com.ll.project_13_backend.global.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import lombok.*;
+
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
-public class Member {
+@Builder
+@AllArgsConstructor(access = PROTECTED)
+@NoArgsConstructor(access = PROTECTED)
+@Setter
+@Getter
+@ToString(callSuper = true)
+public class Member extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long id;
-
-    private String loginId;
+    private String username;
     private String password;
-    private String name;
-    private String email;
-    private String address;
-    private String phone;
-
 }

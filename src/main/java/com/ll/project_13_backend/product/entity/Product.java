@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -24,7 +22,7 @@ public class Product extends BaseEntity {
 
     private String name; //이름
 
-    private BigDecimal price; //상품 가격
+    private long price; //상품 가격
 
     private String relTypeCode;  //Post
 

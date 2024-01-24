@@ -17,8 +17,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-
 @Configuration
 @RequiredArgsConstructor
 public class NotProd {
@@ -49,8 +47,8 @@ public class NotProd {
 
 
 
-        Post post1 = postService.createPost(user1 ,"수업제목1" , "수업내용1" , Category.ENG , new BigDecimal("10000"));
-        Post post2 = postService.createPost(user2 ,"수업제목2" , "수업내용2" , Category.ENG , new BigDecimal("20000"));
+        Post post1 = postService.createPost(user1 ,"수업제목1" , "수업내용1" , Category.ENG , 10_000);
+        Post post2 = postService.createPost(user2 ,"수업제목2" , "수업내용2" , Category.ENG , 20_000);
 
         //상품 (수업)
         Product product1 = productService.createProduct(post1);
@@ -60,7 +58,9 @@ public class NotProd {
         cartService.addItem(user1 , product1);
         cartService.addItem(user1 , product2);
 
-        memberService.addCash(user1 , new BigDecimal("10000") , CashLog.EvenType.충전__무통장입금 , user1);
+        memberService.addCash(user1 ,10000 , CashLog.EvenType.충전__무통장입금 , user1);
+        memberService.addCash(user1, -2000, CashLog.EvenType.출금__통장입금, user1);
+
     }
 
 }

@@ -9,8 +9,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Entity
 @Builder
 @Getter
@@ -33,7 +31,7 @@ public class Post extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Category category; //카테고리
 
-    private BigDecimal price; //가격
+    private long price; //가격
 
     @OneToOne
     private Product product;

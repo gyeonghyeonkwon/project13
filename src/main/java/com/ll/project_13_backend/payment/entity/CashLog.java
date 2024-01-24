@@ -9,8 +9,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -29,7 +27,7 @@ public class CashLog extends BaseEntity {
 
     @ManyToOne
     private Member member;
-    private BigDecimal price;
+    private long price;
 
     public enum EvenType {
         충전__무통장입금,

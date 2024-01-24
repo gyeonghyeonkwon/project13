@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -37,9 +36,14 @@ public class MemberService {
     public Optional<Member> findByUsername(String username) {
         return memberRepository.findByUsername(username);
     }
-
-    public void addCash(Member member, BigDecimal price, CashLog.EvenType evenType , BaseEntity relEntity) {
+    @Transactional
+    public void addCash(Member member, long price, CashLog.EvenType evenType , BaseEntity relEntity) {
         CashLog cashLog = cashService.addCash(member, price, evenType, relEntity);
 
+        long newRestCash = member.getRestCash() + cashLog.getPrice(); //남은 금액
+        member.setRestCash(newRestCash); //금액 저장
+
     }
+
+
 }
